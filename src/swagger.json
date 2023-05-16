@@ -1,0 +1,182 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger challenge documentation",
+        "description": "This API is an activity from Ignite bootcamp",
+        "version": "1.0.0",
+        "contact": {
+            "email": "wiliansanello@outlook.com"
+        }        
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "Create a user without administrator privilegies.",
+                "description": "Create a user without administrator privilegies.",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "name": "user name sample",
+                                        "email": "user email sample"
+                                    }
+                                }
+                        }
+                    }
+                },
+                "responses": {
+                    "201":{
+                        "description": "User created"
+                    },
+                    "400": {
+                        "description": "This user already exists!"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List all users. The user must have administrator privilegies.",
+                "description": "List all users",
+                "parameters": [
+                    {
+                    "name": "user_id",
+                    "in": "header",
+                    "required": true,
+                        "schema": {
+                            "type":  "string",
+                            "format": "uuid"                           
+                        }    
+                    }
+                ],                
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}/admin": {
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Turn an user into an administrator",
+                "description": "Turn an user into an administrator",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "admin": {
+                                        "type": "boolean"
+                                    }
+                                    },
+                                    "example": {
+                                        "admin": false
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Success"
+                        },
+                        "404": {
+                            "description": "User not found"
+                        }
+                    }
+                }                
+            
+        },
+        "/users/{user_id}":{
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List an unique user",
+                "description": "List an unique user",
+                "parameters": [
+                    {
+                    "name": "user_id",
+                    "in": "path",
+                    "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
