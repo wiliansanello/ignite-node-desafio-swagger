@@ -1,17 +1,10 @@
-# ignite-node-introducao-ao-SOLID
-Desafio prático do capítulo 2 da trilha de Node
+# ignite-node-desafio-swagger
+Desafio prático do capítulo 3 da trilha de Node
 
-Esta é uma aplicação backend que viabiliza um cadastro de usuários, que conta com as funcionalidades a seguir:
-- Cadastrar usuários;
-- Tornar um usuário administrador, passando seu id como um route param na requisição;
-- Listar um usuário específico, passando seu id como um route param na requisição;
-- Listar os dados de todos os usuários, permitido somente para um usuário administrador, passando seu id através do header da requisição.
+Esta é uma aplicação backend implementa a documentação do cadastro de usuários [Desafio introdução ao SOLID](https://github.com/wiliansanello/ignite-node-introducao-ao-SOLID):
 
 ## Tecnologias utilizadas:
-- Typescript
-- Jest
-- Express
-- UUID
+- Swagger
 
 ## Requisitos para rodar o projeto 
 É necessário ter o Node e o Yarn instalados em sua máquina.
